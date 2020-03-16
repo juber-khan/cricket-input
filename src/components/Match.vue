@@ -25,41 +25,41 @@
         </div>
       </div>
       <div class="row">
-        <div class="d-inline-flex">
+        <div class="d-inline-flex p-2">
           <div class="m-2">Favourite</div>
-          <div class="form-radio m-2">
+          <div class="form-radio m-2 p-2">
             <label class="form-radio-label">
-              <input type="radio" class="form-radio-input m-2" value="" />{{
+              <input type="radio" class="form-radio-input m-2" v-model="match.favaouriteTeam" :checked="match.favaouriteTeam == match.team1"  :value="match.team1" />{{
                 match.team1
               }}
             </label>
           </div>
-          <div class="form-radio m-2">
+          <div class="form-radio m-2 p-2">
             <label class="form-radio-label">
-              <input type="radio" class="form-radio-input m-2" value="" />{{
+              <input type="radio" class="form-radio-input m-2" v-model="match.favaouriteTeam" :checked="match.favaouriteTeam == match.team2"  :value="match.team2" />{{
                 match.team2
               }}
             </label>
           </div>
-          <div class="form-radio m-2">
+          <div class="form-radio m-2 p-2">
             <label class="form-radio-label ">
               <input
                 type="radio"
+                v-model="match.favaouriteTeam"
                 class="form-radio-input m-2"
-                value=""
-                disabled
+                :checked="match.favaouriteTeam == -1"  :value="'DONO'" 
               />Dono/Both
             </label>
           </div>
         </div>
+        <button
+          type="button"
+          class="btn btn-primary btn-sm"
+          @click="updateMatchDetails()"
+        >
+          Update
+        </button>
       </div>
-      <button
-        type="button"
-        class="btn btn-primary btn-sm"
-        @click="updateMatchDetails()"
-      >
-        Update
-      </button>
       <div class="row">
         <div class="d-inline-flex">
           <div class="m-2">Winner</div>

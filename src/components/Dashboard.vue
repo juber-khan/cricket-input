@@ -5,7 +5,7 @@
         <a class="navbar-brand" href="#">Cricket Input Tool</a>
       </nav>
     </div>
-    <div class="row" style="margin-top: 100px">
+    <div class="row" style="margin-top: 100px" v-if="matches.length > 0">
       <div class="col-md-8 offset-md-2">
         <div class="card text-center">
           <div class="card-header">
@@ -43,8 +43,9 @@ export default {
           id: 1,
           name: "IND vs PAK",
           odd1: 21,
+          favaouriteTeam : 'IND',
           odd2 : 23,
-          team1: "Ind",
+          team1: "IND",
           team2: "PAK"
         },
         {
@@ -52,14 +53,16 @@ export default {
           name: "Bang vs Raipur",
           odd1: 22,
           odd2 : 67,
-          team1: "ss",
-          team2: "ss"
+          favaouriteTeam:'Bang',
+          team1: "Bang",
+          team2: "Raipur"
         },
         {
           id: 3,
           name: "ABC vs POE",
           team1: "ABC",
-          team2: "PE",
+          favaouriteTeam : 'POE',
+          team2: "POE",
           odd1: 45,
           odd2 : 66,
         }
@@ -67,15 +70,14 @@ export default {
     };
   },
   created(){
-    this.currentMatch = this.matches[0];
+    this.currentMatch = this.matches.length > 0 && this.matches[0] ;
     //get businmess logic
   },
   methods: {
-    updateMatchDetails(match) {
-      //current match
+    isNotEmptyObject(obj){
+      return Object.keys(obj).length
     },
     setActive: function (tab) {
-      
             var self = this;
             tab.isActive = true;
             this.activeTab = tab;
