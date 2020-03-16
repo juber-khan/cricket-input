@@ -5,7 +5,7 @@
         <div class="d-inline-flex">
           <div class="m-2">Rate</div>
           <input
-            v-model="match.odd1"
+            v-model="match.odds.odd1"
             type="number"
             min="1"
             max="99"
@@ -14,7 +14,7 @@
             placeholder=""
           />
           <input
-            v-model="match.odd2"
+            v-model="match.odds.odd2"
             type="number"
             min="1"
             max="99"
@@ -29,15 +29,15 @@
           <div class="m-2">Favourite</div>
           <div class="form-radio m-2 p-2">
             <label class="form-radio-label">
-              <input type="radio" class="form-radio-input m-2" v-model="match.favaouriteTeam" :checked="match.favaouriteTeam == match.team1"  :value="match.team1" />{{
-                match.team1
+              <input type="radio" class="form-radio-input m-2" v-model="match.favouriteTeam" :checked="match.favouriteTeam == match.team1"  :value="match.team1" />{{
+                transformTeamToCode(match.team1)
               }}
             </label>
           </div>
           <div class="form-radio m-2 p-2">
             <label class="form-radio-label">
-              <input type="radio" class="form-radio-input m-2" v-model="match.favaouriteTeam" :checked="match.favaouriteTeam == match.team2"  :value="match.team2" />{{
-                match.team2
+              <input type="radio" class="form-radio-input m-2" v-model="match.favouriteTeam" :checked="match.favouriteTeam == match.team2"  :value="match.team2" />{{
+               transformTeamToCode(match.team2)
               }}
             </label>
           </div>
@@ -45,17 +45,17 @@
             <label class="form-radio-label ">
               <input
                 type="radio"
-                v-model="match.favaouriteTeam"
+                v-model="match.favouriteTeam"
                 class="form-radio-input m-2"
-                :checked="match.favaouriteTeam == -1"  :value="'DONO'" 
-              />Dono/Both
+                :checked="match.favouriteTeam == -1"  :value="-1" 
+              /> Dono/Both
             </label>
           </div>
         </div>
         <button
           type="button"
           class="btn btn-primary btn-sm"
-          @click="updateMatchDetails()"
+          @click="updateMatchDetails(match)"
         >
           Update
         </button>
@@ -68,19 +68,19 @@
             class="btn btn-primary btn-sm m-2"
             @click="declareWinner(match.team1)"
           >
-            {{ match.team1 }}
+            {{ transformTeamToCode(match.team1) }}
           </button>
           <button
             type="button"
             class="btn btn-secondary btn-sm m-2"
             @click="declareWinner(match.team2)"
           >
-            {{ match.team2 }}
+            {{ transformTeamToCode(match.team2) }}
           </button>
           <button
             type="button"
             class="btn btn-primary btn-sm m-2"
-            @click="declareWinner('DRAW')"
+            @click="declareWinner(-1)"
           >
             Draw
           </button>
@@ -91,6 +91,7 @@
 </template>
 
 <script>
+import CommonJs from '../parser/common';
 export default {
   name: "Match",
   props: {
@@ -100,11 +101,14 @@ export default {
   },
   methods: {
     updateMatchDetails(match) {
-      //current match
+      // do update 
     },
-    declareWinner(team) {
-      //
-    }
+    declareWinner(match) {
+      // do update 
+    },
+    transformTeamToCode(team){
+        return CommonJs.transformTeamToCode(team);
+    },
   }
 };
 </script>
